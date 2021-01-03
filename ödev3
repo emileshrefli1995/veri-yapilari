@@ -138,5 +138,5 @@ if __name__=='__main__':
     print("Resul Polynom:- ", end = '');
     printList(poly4);
     end_time = time( ) # record the ending time
-    elapsed =end_time-star_time # compute the elapsed time
+    elapsed =end_time-start_time # compute the elapsed time
     print (elapsed);
