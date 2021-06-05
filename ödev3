@@ -1,4 +1,4 @@
--- https://drive.google.com/file/d/1_s5Pc6CZx9t4D49sxm_ZgxUBqsy2plc2/view
+
 library IEEE;
 use IEEE.STD_LOGIC_1164.all; 
 entity MUX is
