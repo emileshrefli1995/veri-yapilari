@@ -1,142 +1,25 @@
-from time import time
+-- https://drive.google.com/file/d/1_s5Pc6CZx9t4D49sxm_ZgxUBqsy2plc2/view
+library IEEE;
+use IEEE.STD_LOGIC_1164.all; 
+entity MUX is
+ port(
+     F: out STD_LOGIC_VECTOR(3 downto 0);
+     S: in STD_LOGIC_VECTOR(1 downto 0);
+     A,B,C,D: in STD_LOGIC_VECTOR(3 downto 0)
+  );
+end MUX;
 
-class Node:   
-    def __init__(self):       
-        self.coeff = None
-        self.power = None
-        self.next = None
-def __init__(self):
-    """Create an empty list."""
-    self._head = None
-    self._tail = None
-    self._size = 0                                      # 
-
-  
-def __len__(self):
-    """Return the number of elements in the list."""
-    return self._size
-
-def is_empty(self):
-    """Return True if list is empty."""
-    return self._size == 0 
-
-def addnode(self, coeff, power):
- 
-    # Create a new node
-    newnode = Node();
-    newnode.coeff = coeff;
-    newnode.power = power;
-    newnode.next = None;
-  
-   
-    if (self == None):
-        return newnode;
-  
-    
-    cur = self;
-    while (cur.next != None):
-        cur = cur.next;
-    cur.next = newnode; 
-    return self;
-
-  
-
-def printList(cur):
-    
-    while (cur.next != None):
-        print(str(cur.coeff) + 'x^' + str(cur.power), end = '')
-        if( cur.next != None and cur.next.coeff >= 0):
-            print('+', end = '') 
-        cur = cur.next
-    print(cur.coeff)
- 
-def add(poly1, poly2,poly3):
-  
-    
-    ptr1 = poly1;
-    ptr2 = poly2;
-     
-    while ptr1 is not None and ptr2 is not None:
-            if ptr1.power > ptr2.power:
-                power = ptr1.power
-                coeff = ptr1.coeff
-                ptr1 = ptr1.next
-                poly3 = addnode(poly3, coeff, power);
-               
-            elif ptr1.power < ptr2.power:
-                power = ptr2.power
-                coeff = ptr2.coeff
-                ptr2 = ptr2.next
-                poly3 = addnode(poly3, coeff, power);
-               
-            else:
-                power = ptr1.power 
-                coeff = ptr1.coeff + ptr2.coeff
-                ptr1 = ptr1.next
-                ptr2 = ptr2.next
-
-                poly3 = addnode(poly3, coeff, power);
-               
-    return poly3;
-def sub(poly1, poly2,poly4):
-  
-   
-    ptr1 = poly1;
-    ptr2 = poly2;
-     
-    while ptr1 is not None and ptr2 is not None:
-            if ptr1.power > ptr2.power:
-                power = ptr1.power
-                coeff = ptr1.coeff
-                ptr1 = ptr1.next
-                poly4 = addnode(poly4, coeff, power);
-               
-            elif ptr1.power < ptr2.power:
-                power = ptr2.power
-                coeff =-ptr2.coeff
-                ptr2 = ptr2.next
-                poly4 = addnode(poly4, coeff, power);
-               
-            else:
-                power = ptr1.power  
-                coeff = ptr1.coeff - ptr2.coeff
-                ptr1 = ptr1.next
-                ptr2 = ptr2.next
-
-                poly4 = addnode(poly4, coeff, power);
-               
-    return poly4;   
-
-if __name__=='__main__': 
-    start_time = time( )
-    poly1 = None;
-    poly2 = None;
-    poly3 = None;
-    poly4 = None;
-     # record the starting time
-    poly1 = addnode(poly1, 2,64);
-    poly1 = addnode(poly1, 6, 5);
-    poly1 = addnode(poly1, -9, 0);
-
-    poly2 = addnode(poly2, 9, 46);
-    poly2 = addnode(poly2, -8, 2);
-    poly2 = addnode(poly2, 7, 1);
-    poly2 = addnode(poly2, 0, 0);
-  
-
-    print("1 Polynom:- ", end = '');
-    printList(poly1);
- 
-    print("2 Polynom:- ", end = '');
-    printList(poly2);
-    
-    poly3 = add(poly1, poly2, poly3);
-    print("Resul Polynom:- ", end = '');
-    printList(poly3);
-   
-    poly4 = sub(poly1, poly2, poly4);
-    print("Resul Polynom:- ", end = '');
-    printList(poly4);
-    end_time = time( ) # record the ending time
-    elapsed =end_time-start_time # compute the elapsed time
-    print (elapsed);
+architecture behv of MUX is
+begin
+process (A,B,C,D,S) is
+begin
+  if (S ="00") then
+      F <= A;
+  elsif (S ="01") then
+      F <= B;
+  elsif (S="10") then
+      F <= C;
+  else
+      F <= D;
+  end if;end process;
+end behv;    
